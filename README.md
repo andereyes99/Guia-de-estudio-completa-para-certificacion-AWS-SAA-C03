@@ -1667,13 +1667,13 @@ Francisco Escobar | Certified Solutions Architect - Associate
 - **AWS Free Tier:** Experimenta con servicios reales
 - **AWS Workshops:** workshops.aws (escenarios guiados)
 - **AWS Well-Architected Labs:** Escenarios prácticos
-- **CloudQuest:** Aprendizaje gamificado
+- **Skill Builders CloudQuest:** Aprendizaje gamificado
 
 #### ✍️ Exámenes de Práctica
 - **Tutorials Dojo:** Exámenes muy similares al real (MUY recomendado)
 - **AWS Official Practice Exam:** $20, feeling del examen real
 - **WhizLabs:** Múltiples practice tests
-- **Udemy - Jon Bonso:** 6 practice exams, explicaciones detalladas
+
 
 #### 📖 Documentación
 - **AWS FAQs:** Lee FAQs de servicios clave (S3, EC2, RDS, VPC)
@@ -1684,8 +1684,8 @@ Francisco Escobar | Certified Solutions Architect - Associate
 #### 🎓 Cursos Online
 - **Stephane Maarek (Udemy):** Curso completo SAA-C03
 - **Adrian Cantrill:** Profundidad técnica excepcional
-- **A Cloud Guru:** Cursos interactivos
-- **Linux Academy:** Labs prácticos
+- **A Cloud Guru/Pluralsight:** Cursos interactivos
+
 
 ---
 
