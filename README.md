@@ -49,22 +49,6 @@ Francisco Escobar | Certified Solutions Architect - Associate
 
 ---
 
-### AWS Data Pipeline
-
-**Servicio de orquestación para movimiento y transformación de datos**
-
-#### Características clave:
-- Programación de trabajos periódicos
-- Manejo de dependencias entre tareas
-- Soporta on-premises y AWS
-- Reintentos automáticos en caso de fallo
-- Procesamiento basado en EC2 o EMR
-
-**Casos de uso:** ETL entre sistemas, backups programados, movimiento de datos
-
-> 💡 **Exam tip:** Para pipelines tradicionales; considera Glue para enfoque serverless más moderno.
-
----
 
 ### Amazon EMR (Elastic MapReduce)
 
@@ -107,8 +91,8 @@ Francisco Escobar | Certified Solutions Architect - Associate
 
 #### Componentes:
 - **Kinesis Data Streams:** Streams personalizados, retención 1-365 días, control total, sharding manual
-- **Kinesis Data Firehose:** Carga automática a S3/Redshift/OpenSearch/Splunk, near real-time (60s buffer), serverless
-- **Kinesis Data Analytics:** Análisis SQL en tiempo real sobre streams
+- **Amazon Data Firehose:** Carga automática a S3/Redshift/OpenSearch/Splunk, near real-time (60s buffer), serverless
+- **Amazon Managed Service for Apache Flink:** Procesamiento y análisis de streaming en tiempo real con Apache Flink, completamente administrado
 - **Kinesis Video Streams:** Streaming de video para análisis con ML
 
 **Casos de uso:** IoT data ingestion, log aggregation, real-time analytics, clickstream analysis
@@ -159,7 +143,7 @@ Francisco Escobar | Certified Solutions Architect - Associate
 - Visualización con OpenSearch Dashboards (antes Kibana)
 - Auto-scaling de nodos
 - Multi-AZ con réplicas
-- Integración con Kinesis Firehose, CloudWatch Logs
+- Integración con Amazon Data Firehose, CloudWatch Logs
 
 **Casos de uso:** Búsquedas en aplicaciones, análisis de logs, SIEM, monitoreo de aplicaciones
 
@@ -274,7 +258,7 @@ Francisco Escobar | Certified Solutions Architect - Associate
 
 #### Características clave:
 - Múltiples suscriptores por tópico (fan-out pattern)
-- Protocolos: HTTP/HTTPS, email, SMS, SQS, Lambda, Kinesis Firehose, mobile push
+- Protocolos: HTTP/HTTPS, email, SMS, SQS, Lambda, Amazon Data Firehose, mobile push
 - **FIFO topics:** Orden garantizado, exactly-once delivery
 - Message filtering (suscriptores reciben solo mensajes relevantes)
 - Message attributes
@@ -688,21 +672,42 @@ Francisco Escobar | Certified Solutions Architect - Associate
 
 ---
 
-### Amazon QLDB (Quantum Ledger Database)
 
-**Ledger database inmutable y verificable**
+---
+
+### Amazon DocumentDB (con compatibilidad con MongoDB)
+
+**Base de datos de documentos administrada compatible con cargas de trabajo de MongoDB**
 
 #### Características clave:
-- Historia completa e inmutable de cambios
-- Criptográficamente verificable (SHA-256, journal cryptográfico)
-- Serverless
-- Journal inmutable (append-only)
-- PartiQL query language (SQL-like)
-- Sin descentralización (centralizado por AWS)
+- Servicio administrado orientado a documentos
+- Compatible con APIs y drivers de MongoDB
+- Alta disponibilidad con replicación entre múltiples AZs
+- Almacenamiento distribuido y auto-scaling
+- Backups automáticos y point-in-time recovery
+- Cifrado en reposo con KMS
 
-**Casos de uso:** Auditoría, sistemas financieros, supply chain, cumplimiento regulatorio, historial médico
+**Casos de uso:** Catálogos, perfiles de usuario, content management, aplicaciones que migran desde MongoDB
 
-> ✅ **Exam tip:** Cuando necesitas trazabilidad completa e inmutable. Blockchain sin descentralización.
+> 💡 **Exam tip:** Cuando necesitas una base de datos de documentos administrada y compatibilidad con workloads de MongoDB.
+
+---
+
+### Amazon Keyspaces (for Apache Cassandra)
+
+**Base de datos Apache Cassandra-compatible, serverless y administrada**
+
+#### Características clave:
+- Compatible con Cassandra Query Language (CQL)
+- Serverless, sin servidores ni clústeres que administrar
+- Escalado automático
+- Alta disponibilidad multi-AZ
+- Modos de capacidad on-demand y provisioned
+- Integración con IAM y cifrado en reposo
+
+**Casos de uso:** Aplicaciones Cassandra, IoT, workloads de gran escala y baja latencia
+
+> 💡 **Exam tip:** Cuando necesitas Cassandra sin administrar la infraestructura subyacente.
 
 ---
 
@@ -865,6 +870,50 @@ Francisco Escobar | Certified Solutions Architect - Associate
 - Compartir recursos (RAM)
 
 > ✅ **Exam tip:** Para empresas multi-cuenta. SCPs limitan (no otorgan) permisos.
+
+---
+
+### AWS Control Tower
+
+**Configuración y gobierno de entornos AWS multi-cuenta**
+
+#### Características clave:
+- Landing zone basada en AWS Organizations
+- Creación y aprovisionamiento estandarizado de cuentas
+- Guardrails/controles preventivos y detectivos
+- Integración con AWS Organizations, IAM Identity Center y AWS Config
+
+**Casos de uso:** Gobernanza multi-cuenta, estandarización y despliegue de nuevos entornos AWS
+
+> 💡 **Exam tip:** Para establecer rápidamente un entorno multi-cuenta gobernado siguiendo buenas prácticas de AWS.
+
+---
+
+### AWS Well-Architected Tool
+
+**Evaluación de cargas de trabajo según AWS Well-Architected Framework**
+
+#### Características clave:
+- Revisión de workloads usando los 6 pilares
+- Identificación de riesgos de arquitectura
+- Recomendaciones de mejora
+- Seguimiento de hitos y evolución de workloads
+
+> 💡 **Exam tip:** Úsalo para revisar arquitecturas contra las mejores prácticas del Well-Architected Framework.
+
+---
+
+### AWS Compute Optimizer
+
+**Recomendaciones de right-sizing basadas en uso y métricas**
+
+#### Características clave:
+- Analiza utilización histórica de recursos
+- Recomienda tamaños y configuraciones más eficientes
+- Ayuda a reducir costos y mejorar rendimiento
+- Recomendaciones para recursos como EC2, Auto Scaling, EBS y Lambda
+
+> 💡 **Exam tip:** Right-sizing y optimización basada en métricas reales de utilización.
 
 ---
 
@@ -1050,6 +1099,23 @@ Francisco Escobar | Certified Solutions Architect - Associate
 
 ---
 
+### AWS PrivateLink
+
+**Conectividad privada entre VPCs, servicios AWS y servicios propios**
+
+#### Características clave:
+- Acceso privado sin usar Internet público
+- Usa VPC Interface Endpoints
+- El tráfico permanece dentro de la red de AWS
+- Evita VPC Peering, NAT Gateway o Internet Gateway para muchos escenarios
+- Permite publicar servicios mediante Endpoint Services
+
+**Casos de uso:** Exponer servicios privados entre VPCs/cuentas y consumir servicios AWS de forma privada
+
+> ✅ **Exam tip:** PrivateLink cuando necesitas conectividad privada servicio-a-servicio sin exponer tráfico a Internet ni crear conectividad de red completa entre VPCs.
+
+---
+
 ### AWS Transit Gateway
 
 **Hub central para conectar VPCs y redes**
@@ -1095,6 +1161,20 @@ Francisco Escobar | Certified Solutions Architect - Associate
 
 ---
 
+### AWS Certificate Manager (ACM)
+
+**Provisionamiento y administración de certificados SSL/TLS**
+
+#### Características clave:
+- Emisión y renovación administrada de certificados públicos
+- Importación de certificados externos
+- Integración con ELB, CloudFront y API Gateway
+- Reduce la administración manual de certificados
+
+> ✅ **Exam tip:** Para HTTPS administrado en servicios integrados de AWS; ACM automatiza la renovación de certificados públicos elegibles.
+
+---
+
 ### Amazon GuardDuty
 
 **Detección de amenazas inteligente**
@@ -1118,6 +1198,23 @@ Francisco Escobar | Certified Solutions Architect - Associate
 **Best practices:** Least privilege, MFA, rotate credentials, usar roles
 
 > ✅ **Exam tip:** Core de seguridad. Policies evalúan: Explicit Deny > Explicit Allow > Implicit Deny
+
+---
+
+### AWS IAM Identity Center
+
+**Gestión centralizada de acceso de usuarios a múltiples cuentas AWS y aplicaciones**
+
+#### Características clave:
+- Single Sign-On (SSO) para cuentas AWS y aplicaciones
+- Integración con AWS Organizations
+- Permission sets para asignar acceso a cuentas
+- Integración con proveedores de identidad externos
+- Credenciales temporales en lugar de usuarios IAM permanentes
+
+**Casos de uso:** Acceso centralizado de empleados a entornos AWS multi-cuenta
+
+> ✅ **Exam tip:** Para acceso humano centralizado a múltiples cuentas AWS, especialmente junto con AWS Organizations.
 
 ---
 
@@ -1149,6 +1246,34 @@ Francisco Escobar | Certified Solutions Architect - Associate
 **Detección de datos sensibles con ML**
 
 **Características:** Escanea S3 en busca de PII, ML para patrones, alertas de exposición
+
+---
+
+### AWS Network Firewall
+
+**Firewall administrado para proteger tráfico de red en VPC**
+
+#### Características clave:
+- Inspección de tráfico stateful y stateless
+- Reglas de filtrado de red administradas
+- Integración con VPC y AWS Firewall Manager
+- Protección centralizada para tráfico entre subnets, VPCs e Internet
+
+> 💡 **Exam tip:** Cuando necesitas inspección y filtrado avanzado del tráfico de red a nivel de VPC.
+
+---
+
+### AWS Security Hub
+
+**Gestión centralizada de postura de seguridad y hallazgos**
+
+#### Características clave:
+- Agrega findings de múltiples servicios y cuentas
+- Evaluaciones contra estándares de seguridad
+- Integración con GuardDuty, Inspector, Macie y otros servicios
+- Vista centralizada para priorizar riesgos
+
+> ✅ **Exam tip:** Security Hub centraliza findings; GuardDuty detecta amenazas, Inspector vulnerabilidades y Macie datos sensibles.
 
 ---
 
@@ -1269,6 +1394,23 @@ Francisco Escobar | Certified Solutions Architect - Associate
 - Transfer Acceleration (CloudFront edge)
 
 > ✅ **Exam tip:** Durabilidad 11 9s (99.999999999%). Conoce cuándo usar cada storage class.
+
+---
+
+### AWS Backup
+
+**Servicio centralizado para automatizar y administrar backups**
+
+#### Características clave:
+- Políticas centralizadas de backup
+- Soporte para múltiples servicios AWS
+- Backup cross-account y cross-region
+- Retención y lifecycle policies
+- AWS Backup Vault y Vault Lock para protección adicional
+
+**Casos de uso:** Estrategias centralizadas de backup, compliance y disaster recovery
+
+> ✅ **Exam tip:** Cuando necesitas administrar backups de múltiples servicios desde una única política centralizada.
 
 ---
 
@@ -1394,7 +1536,6 @@ Francisco Escobar | Certified Solutions Architect - Associate
 | Cache en memoria | ElastiCache | Microsegundos, reduce carga DB |
 | Grafos, relaciones | Neptune | Optimizado para grafos |
 | MongoDB compatible | DocumentDB | API MongoDB, administrado |
-| Ledger inmutable | QLDB | Auditoría completa, criptográfico |
 
 ---
 
@@ -1488,7 +1629,7 @@ Francisco Escobar | Certified Solutions Architect - Associate
 ## ✅ 20. CHECKLIST PRE-EXAMEN
 
 ### Conceptos Fundamentales
-- [ ] Comprendo los 5 pilares del Well-Architected Framework
+- [ ] Comprendo los 6 pilares del Well-Architected Framework: excelencia operativa, seguridad, fiabilidad, eficiencia del rendimiento, optimización de costos y sostenibilidad
 - [ ] Conozco diferencias entre AZ, Region, Edge Location
 - [ ] Entiendo modelo de responsabilidad compartida
 - [ ] Sé cuándo usar cada servicio compute (EC2, Lambda, Fargate, ECS, EKS)
@@ -1671,7 +1812,8 @@ Francisco Escobar | Certified Solutions Architect - Associate
 
 #### ✍️ Exámenes de Práctica
 - **Tutorials Dojo:** Exámenes muy similares al real (MUY recomendado)
-- **AWS Official Practice Exam:** $20, feeling del examen real
+- **AWS Official Practice Question Set:** 20 preguntas oficiales gratuitas
+- **AWS Official Practice Exam:** Examen completo disponible mediante suscripción a AWS Skill Builder (desde $29 USD/mes)
 - **WhizLabs:** Múltiples practice tests
 
 
